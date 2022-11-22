@@ -1,0 +1,8 @@
+.content{
+min-height: calc(100vh - 70px - 64px);
+padding:  1.5rem 0;
+
+}
+.loading{
+    font-size:  35px;
+}

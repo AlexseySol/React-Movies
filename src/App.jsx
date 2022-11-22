@@ -15,11 +15,16 @@ function App() {
 
   React.useEffect(() => {
     async function effect() {
-      await axios
-        .get(`http://www.omdbapi.com/?apikey=8cfdb9a6&s=game`)
+      try {
+          await axios
+        .get(`https://www.omdbapi.com/?apikey=${API_KEY}&s=game`)
         .then((res) => setState(res.data.Search));
 
       setLoading(false);
+      } catch (error) {
+        console.log("Error")
+      }
+    
     }
     effect();
   }, []);
@@ -29,15 +34,19 @@ function App() {
   };
 
   let post = (str='game',isRadio='all') => {
-    
-    axios
+    try {
+      axios
       .post(
-        `http://www.omdbapi.com/?apikey=8cfdb9a6&s=${str}&${`${
+        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${str}&${`${
           isRadio !== "all" ? `&type=${isRadio}` : ""
         }`}`
       )
       .then((res) => setState(res.data.Search));
    
+    } catch (error) {
+      console.log("Error")
+    }
+    
   };
 
   const handelRadio = (event,) => {
